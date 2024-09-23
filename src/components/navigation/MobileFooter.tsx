@@ -3,6 +3,7 @@ import { Navbar } from "@nextui-org/navbar";
 import { ImagePlus, LayoutDashboard } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import LogoutButton from "../buttons/LogoutButton";
+import AvatarMenu from "./AvatarMenu";
 
 const MobileFooter = () => {
   const pathname = usePathname();
@@ -44,8 +45,7 @@ const MobileFooter = () => {
               onPress={() => push("/profile")}
               //   onPressEnd={onClose}
             >
-              pro
-              {/* <AvatarMenu withName={false} /> */}
+              <AvatarMenu withName={false} />
             </Button>
 
             <LogoutButton />

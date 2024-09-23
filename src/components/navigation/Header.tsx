@@ -10,6 +10,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import DarkmodeButton from "../buttons/DarkmodeButton";
 import LogoutButton from "../buttons/LogoutButton";
+import AvatarMenu from "./AvatarMenu";
 
 const Header = () => {
   const pathname = usePathname();
@@ -70,8 +71,7 @@ const Header = () => {
               variant="light"
               onPress={() => push("/profile")}
             >
-              pro
-              {/* <AvatarMenu withName={true} /> */}
+              <AvatarMenu withName={true} />
             </Button>
           </NavbarItem>
 
