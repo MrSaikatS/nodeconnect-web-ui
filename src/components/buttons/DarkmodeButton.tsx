@@ -1,19 +1,11 @@
+import { darkModeAtom } from "@/utils/helpers";
 import { Button } from "@nextui-org/button";
-import { useEffect, useState } from "react";
+import { useAtom } from "jotai";
 import MoonAnimated from "../icons/MoonAnimated";
 import SunAnimated from "../icons/SunAnimated";
 
 const DarkmodeButton = () => {
-  // const [isDark, setIsDark] = useAtom(darkModeAtom);
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDark]);
+  const [isDark, setIsDark] = useAtom(darkModeAtom);
 
   return (
     <>
