@@ -14,7 +14,7 @@ const page = () => {
     <>
       <div className="grid h-dvh place-items-center">
         <Card className="mx-auto w-[310px] sm:w-[390px]">
-          <CardHeader className="flex justify-center text-2xl font-semibold tracking-wide">
+          <CardHeader className="flex justify-center text-3xl font-bold tracking-wide">
             <Link href="/">NodeConnect</Link>
           </CardHeader>
 
