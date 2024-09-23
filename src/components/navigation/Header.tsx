@@ -8,8 +8,8 @@ import {
 import { ImagePlus, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import LogoutButton from "../buttons/LogoutButton";
 import DarkmodeButton from "../buttons/DarkmodeButton";
+import LogoutButton from "../buttons/LogoutButton";
 
 const Header = () => {
   const pathname = usePathname();
@@ -22,7 +22,10 @@ const Header = () => {
 
   return (
     <>
-      <Navbar isBordered>
+      <Navbar
+        isBordered
+        isBlurred
+      >
         <NavbarBrand className="text-2xl font-bold tracking-wide">
           <Link href="/">NodeConnect</Link>
         </NavbarBrand>
