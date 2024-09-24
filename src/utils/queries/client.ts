@@ -1,14 +1,10 @@
 import { HTTPError } from "ky";
 import api from "../ky/client";
-import {
-  DefautResponseType,
-  ExsistedUserType,
-  RegisterFormType,
-} from "../types";
+import { DefautResponseType, PublicUserType, RegisterFormType } from "../types";
 
 export const authRegister = async (rData: RegisterFormType) => {
   try {
-    const getExsistingUser = await api
+    const { data } = await api
       .get("users", {
         searchParams: {
           filter: JSON.stringify({
@@ -18,19 +14,30 @@ export const authRegister = async (rData: RegisterFormType) => {
           }),
         },
       })
-      .json<DefautResponseType<ExsistedUserType[]>>();
+      .json<DefautResponseType<PublicUserType[]>>();
 
-    if (getExsistingUser.data.length !== 0) {
-      return {
-        success: false,
-        message: "Email already exists",
-        data: null,
-      };
-    } else {
+    if (data.length === 0) {
+      await api
+        .post("users", {
+          json: {
+            first_name: rData.first_name,
+            last_name: rData.last_name,
+            gender: rData.gender,
+            email: rData.email,
+            password: rData.password,
+            role: "4cd82120-1c0d-4679-9971-9a432a09a571",
+          },
+        })
+        .json();
+
       return {
         success: true,
         message: "User Registeration Successful",
-        data: null,
+      };
+    } else {
+      return {
+        success: false,
+        message: `Email ${rData.email} already exists`,
       };
     }
   } catch (error: any) {
@@ -40,13 +47,11 @@ export const authRegister = async (rData: RegisterFormType) => {
       return {
         success: false,
         message: errorJson.errors[0].message as string,
-        data: null,
       };
     } else {
       return {
         success: false,
         message: "Network Error",
-        data: null,
       };
     }
   }

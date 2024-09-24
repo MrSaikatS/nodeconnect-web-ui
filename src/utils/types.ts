@@ -15,6 +15,8 @@ export type DefautResponseType<T> = {
   data: T;
 };
 
-export type ExsistedUserType = {
+export type PublicUserType = {
+  first_name: string;
+  last_name: string;
   email: string;
 };
