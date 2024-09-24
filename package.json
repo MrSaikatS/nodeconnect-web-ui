@@ -1,6 +1,6 @@
 {
   "name": "nodeconnect-web-ui",
-  "version": "0.1.5",
+  "version": "0.2.5",
   "private": true,
   "scripts": {
     "dev": "rm -rf .next && next dev",
@@ -17,6 +17,7 @@
     "@nextui-org/select": "2.2.7",
     "@nextui-org/system": "2.2.6",
     "@nextui-org/theme": "2.2.11",
+    "@t3-oss/env-nextjs": "^0.11.1",
     "framer-motion": "11.5.6",
     "jotai": "^2.10.0",
     "lucide-react": "^0.445.0",
