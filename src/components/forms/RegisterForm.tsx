@@ -11,6 +11,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import EyeAnimated from "../icons/EyeAnimated";
 import EyeSlashAnimated from "../icons/EyeSlashAnimated";
+import { authRegister } from "@/utils/queries/client";
+import { toast } from "react-toastify";
 
 const RegisterForm = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,9 +27,15 @@ const RegisterForm = () => {
   });
 
   const userRegisterFunc = async (rData: RegisterFormType) => {
-    await fakeApiDelay();
+    const { success, message, data } = await authRegister(rData);
 
-    console.log(rData);
+    if (!success) {
+      toast.error(message);
+    }
+
+    if (success) {
+      toast.success(message);
+    }
   };
 
   return (

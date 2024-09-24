@@ -1,5 +1,6 @@
 import { Provider as JotaiProvider } from "jotai";
 import { ReactNode } from "react";
+import "react-toastify/dist/ReactToastify.min.css";
 import "./globals.css";
 import Providers from "./providers";
 
