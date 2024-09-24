@@ -7,8 +7,7 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    // DATABASE_URL: z.string().url(),
-    // OPEN_AI_API_KEY: z.string().min(1),
+    API_URL: z.string().url(),
   },
 
   // For Next.js >= 13.4.4, you can just reference process.env:
