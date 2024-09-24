@@ -1,3 +1,4 @@
+import { Provider as JotaiProvider } from "jotai";
 import { ReactNode } from "react";
 import "./globals.css";
 import Providers from "./providers";
@@ -10,9 +11,12 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html
       lang="en"
-      className="dark">
+      className="dark"
+    >
       <body className={``}>
-        <Providers>{children}</Providers>
+        <JotaiProvider>
+          <Providers>{children}</Providers>
+        </JotaiProvider>
       </body>
     </html>
   );

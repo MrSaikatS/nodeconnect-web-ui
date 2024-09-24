@@ -8,7 +8,12 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <div className="grid gap-4 py-4"></div>
+      <div className="grid gap-4 py-4">
+        <div className="h-[50dvh] rounded-lg bg-teal-500"></div>
+        <div className="h-[50dvh] rounded-lg bg-teal-500"></div>
+        <div className="h-[50dvh] rounded-lg bg-teal-500"></div>
+        <div className="h-[50dvh] rounded-lg bg-teal-500"></div>
+      </div>
     </>
   );
 };
