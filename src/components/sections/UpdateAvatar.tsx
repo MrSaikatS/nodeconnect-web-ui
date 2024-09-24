@@ -26,7 +26,10 @@ const UpdateAvatar = () => {
 
   return (
     <>
-      <Card as={"section"}>
+      <Card
+        as={"section"}
+        className="mx-auto w-[310px] sm:w-[390px]"
+      >
         <CardHeader className="flex justify-center text-2xl">
           Change Avatar
         </CardHeader>

@@ -15,9 +15,9 @@ const page = () => {
         <UpdateAvatar />
       </div>
 
-      <Divider />
+      <Divider className="mx-auto w-[310px] sm:w-[390px]" />
 
-      <div className="py-4">
+      <div className="pb-20 pt-4 sm:pb-4">
         <ProfileEditForm />
       </div>
     </>
