@@ -38,3 +38,7 @@ export const profileEditFormSchema = z.object({
     z.string().min(6, { message: "Bio must be at least 6 characters long" }),
   ),
 });
+
+export const postFormSchema = z.object({
+  caption: z.optional(z.string()),
+});
