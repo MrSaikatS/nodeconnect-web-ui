@@ -1,6 +1,6 @@
 "use client";
 
-import { authRegister } from "@/utils/queries/client";
+import authRegister from "@/utils/queries/authRegister";
 import { RegisterFormType } from "@/utils/types";
 import { registerFormSchema } from "@/utils/zodSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,7 +37,7 @@ const RegisterForm = () => {
 
     if (success) {
       toast.success(message);
-      push("/auth/login")
+      push("/auth/login");
     }
   };
 

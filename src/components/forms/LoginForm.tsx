@@ -1,18 +1,22 @@
 "use client";
 
-import { fakeApiDelay } from "@/utils/helpers";
+import authLogin from "@/utils/queries/authLogin";
 import { LoginFormType } from "@/utils/types";
 import { loginFormSchema } from "@/utils/zodSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import EyeAnimated from "../icons/EyeAnimated";
 import EyeSlashAnimated from "../icons/EyeSlashAnimated";
 
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  const { push } = useRouter();
 
   const {
     handleSubmit,
@@ -24,9 +28,16 @@ const LoginForm = () => {
   });
 
   const userLoginFunc = async (lData: LoginFormType) => {
-    await fakeApiDelay();
+    const { success, message } = await authLogin(lData);
 
-    console.log(lData);
+    if (!success) {
+      toast.error(message);
+    }
+
+    if (success) {
+      toast.success(message);
+      push("/");
+    }
   };
 
   return (

@@ -2,7 +2,7 @@ import { HTTPError } from "ky";
 import api from "../ky/client";
 import { DefautResponseType, PublicUserType, RegisterFormType } from "../types";
 
-export const authRegister = async (rData: RegisterFormType) => {
+const authRegister = async (rData: RegisterFormType) => {
   try {
     const { data } = await api
       .get("users", {
@@ -56,3 +56,5 @@ export const authRegister = async (rData: RegisterFormType) => {
     }
   }
 };
+
+export default authRegister;
