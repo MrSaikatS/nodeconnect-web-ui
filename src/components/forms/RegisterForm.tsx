@@ -1,19 +1,23 @@
 "use client";
 
-import { fakeApiDelay } from "@/utils/helpers";
+import authRegister from "@/utils/queries/authRegister";
 import { RegisterFormType } from "@/utils/types";
 import { registerFormSchema } from "@/utils/zodSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import EyeAnimated from "../icons/EyeAnimated";
 import EyeSlashAnimated from "../icons/EyeSlashAnimated";
 
 const RegisterForm = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  const { push } = useRouter();
 
   const {
     handleSubmit,
@@ -25,9 +29,16 @@ const RegisterForm = () => {
   });
 
   const userRegisterFunc = async (rData: RegisterFormType) => {
-    await fakeApiDelay();
+    const { success, message } = await authRegister(rData);
 
-    console.log(rData);
+    if (!success) {
+      toast.error(message);
+    }
+
+    if (success) {
+      toast.success(message);
+      push("/auth/login");
+    }
   };
 
   return (

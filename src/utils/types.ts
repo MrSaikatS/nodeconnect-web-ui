@@ -10,3 +10,13 @@ export type LoginFormType = z.infer<typeof loginFormSchema>;
 export type RegisterFormType = z.infer<typeof registerFormSchema>;
 export type ProfileEditFormType = z.infer<typeof profileEditFormSchema>;
 export type PostFormType = z.infer<typeof postFormSchema>;
+
+export type DefautResponseType<T> = {
+  data: T;
+};
+
+export type PublicUserType = {
+  first_name: string;
+  last_name: string;
+  email: string;
+};
