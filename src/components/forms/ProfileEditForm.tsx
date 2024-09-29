@@ -44,7 +44,7 @@ const ProfileEditForm = ({ profile }: ProfileEditFormProps) => {
     <>
       <Card
         as={"section"}
-        className="mx-auto w-[310px] sm:w-[390px]"
+        className="mx-auto min-w-[86dvw] max-w-screen-sm"
       >
         <CardHeader className="flex justify-center text-2xl">
           Change Profile Details

@@ -24,7 +24,9 @@ const RootLayout = ({ children }: RootLayoutProps) => {
               <AvatarMenu withName={true} />
             </Header>
 
-            {children}
+            <main className="container mx-auto max-w-screen-lg px-6">
+              {children}
+            </main>
 
             <MobileFooter>
               <AvatarMenu withName={false} />

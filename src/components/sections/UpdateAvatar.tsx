@@ -55,7 +55,7 @@ const UpdateAvatar = ({ profile }: UpdateAvatarProps) => {
     <>
       <Card
         as={"section"}
-        className="mx-auto w-[310px] sm:w-[390px]"
+        className="mx-auto min-w-[86dvw] max-w-screen-sm"
       >
         <CardHeader className="flex justify-center text-2xl">
           Change Avatar
@@ -69,7 +69,7 @@ const UpdateAvatar = ({ profile }: UpdateAvatarProps) => {
                 alt={profile.first_name}
                 width={300}
                 height={300}
-                className="h-[300px] w-[300px] rounded-full"
+                className="aspect-square h-[300px] w-[300px] rounded-full"
               />
 
               <button
@@ -88,7 +88,7 @@ const UpdateAvatar = ({ profile }: UpdateAvatarProps) => {
               alt={file.name}
               width={300}
               height={300}
-              className="h-[300px] w-[300px] rounded-full"
+              className="aspect-square h-[300px] w-[300px] rounded-full"
             />
           ))}
         </CardBody>

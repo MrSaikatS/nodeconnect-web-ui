@@ -22,7 +22,7 @@ const MobileFooter = ({ children }: MobileFooterProps) => {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 w-full border-t border-foreground-100 sm:hidden">
+      <div className="fixed bottom-0 left-0 z-10 w-full border-t border-foreground-100 sm:hidden">
         <Navbar isBlurred>
           <div className="flex w-full justify-between py-2">
             <Button

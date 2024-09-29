@@ -3,11 +3,20 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        // protocol: "https",
+        protocol: "https",
         hostname: "avatar.iran.liara.run",
-        // port: "",
-        // pathname: "/account123/**",
+        pathname: "/public/**",
       },
+      {
+        protocol: "http",
+        hostname: "192.168.29.10",
+        pathname: "/assets/**",
+      },
+      // {
+      //   protocol: "http",
+      //   hostname: "localhost",
+      //   pathname: "/assets/**",
+      // },
     ],
   },
 };

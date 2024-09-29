@@ -24,9 +24,7 @@ const Providers = ({ children }: ProvidersProps) => {
   return (
     <>
       <NextUIProvider>
-        <main className="container mx-auto max-w-screen-lg px-6">
-          {children}
-        </main>
+        {children}
 
         <ToastContainer
           position="top-center"

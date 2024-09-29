@@ -22,7 +22,7 @@ const page = async () => {
         <UpdateAvatar profile={userData} />
       </div>
 
-      <Divider className="mx-auto w-[310px] sm:w-[390px]" />
+      <Divider className="mx-auto min-w-[86dvw] max-w-screen-sm" />
 
       <div className="pb-20 pt-4 sm:pb-4">
         <ProfileEditForm profile={userData} />
