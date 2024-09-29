@@ -1,4 +1,5 @@
 import ProfileInfo from "@/components/sections/ProfileInfo";
+import getAuthenticatedUser from "@/utils/queries/getAuthenticatedUser";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,10 +7,20 @@ export const metadata: Metadata = {
   description: "NodeSocial Profile Page",
 };
 
-const page = () => {
+const page = async () => {
+  const userData = await getAuthenticatedUser();
+
+  if (userData === undefined) {
+    return <></>;
+  }
+
   return (
     <>
-      <ProfileInfo selfProfile={true} />
+      <ProfileInfo
+        key={userData.id}
+        selfProfile={true}
+        user={userData}
+      />
 
       <div className="grid gap-4 py-4"></div>
     </>
