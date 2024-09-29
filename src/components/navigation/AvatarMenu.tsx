@@ -1,3 +1,4 @@
+import getAuthenticatedUser from "@/utils/queries/getAuthenticatedUser";
 import Image from "next/image";
 
 type AvatarMenuProps = {
@@ -5,17 +6,18 @@ type AvatarMenuProps = {
 };
 
 const AvatarMenu = async ({ withName }: AvatarMenuProps) => {
-  const user = {
-    first_name: "Saikat",
-    last_name: "Sardar",
-    avatar: null,
-    gender: "male",
-  };
+  const userData = await getAuthenticatedUser();
+
+  if (userData === undefined) {
+    return <></>;
+  }
+
+  const { first_name, last_name, avatar, gender } = userData;
 
   const avatarUrl =
-    user.avatar === null
-      ? `https://avatar.iran.liara.run/public/${user.gender === "male" ? "boy" : "girl"}?username=${user.first_name}+${user.last_name}`
-      : user.avatar;
+    avatar === null
+      ? `https://avatar.iran.liara.run/public/${gender === "male" ? "boy" : "girl"}?username=${first_name}+${last_name}`
+      : avatar;
 
   return (
     <div className="flex items-center gap-2">
@@ -26,7 +28,7 @@ const AvatarMenu = async ({ withName }: AvatarMenuProps) => {
         height={38}
         className="h-[38px] w-[38px] rounded-full"
       />
-      {withName && <span className="pr-[2rem] text-lg">{user.first_name}</span>}
+      {withName && <span className="pr-[2rem] text-lg">{first_name}</span>}
     </div>
   );
 };
