@@ -6,6 +6,7 @@ const authLogin = async (lData: LoginFormType) => {
   try {
     //
     await api.post("auth/login", {
+      next: { tags: ["authLogin"] },
       json: {
         email: lData.email,
         password: lData.password,

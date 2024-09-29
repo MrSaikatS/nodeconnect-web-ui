@@ -4,6 +4,7 @@ import api from "../ky/client";
 const authLogout = async () => {
   try {
     await api.post("auth/logout", {
+      next: { tags: ["authLogout"] },
       json: {
         refresh_token: "",
         mode: "session",
