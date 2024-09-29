@@ -4,7 +4,7 @@ type AvatarMenuProps = {
   withName: boolean;
 };
 
-const AvatarMenu = ({ withName }: AvatarMenuProps) => {
+const AvatarMenu = async ({ withName }: AvatarMenuProps) => {
   const user = {
     first_name: "Saikat",
     last_name: "Sardar",
@@ -20,7 +20,6 @@ const AvatarMenu = ({ withName }: AvatarMenuProps) => {
   return (
     <div className="flex items-center gap-2">
       <Image
-        // src={avatarUrl}
         src={avatarUrl}
         alt="Profile Image"
         width={38}

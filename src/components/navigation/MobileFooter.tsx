@@ -1,11 +1,18 @@
+"use client";
+
 import { Button } from "@nextui-org/button";
 import { Navbar } from "@nextui-org/navbar";
 import { ImagePlus, LayoutDashboard } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { ReactNode } from "react";
 import LogoutButton from "../buttons/LogoutButton";
 import AvatarMenu from "./AvatarMenu";
 
-const MobileFooter = () => {
+type MobileFooterProps = Readonly<{
+  children: ReactNode;
+}>;
+
+const MobileFooter = ({ children }: MobileFooterProps) => {
   const pathname = usePathname();
 
   const { push } = useRouter();
@@ -24,7 +31,6 @@ const MobileFooter = () => {
               variant="light"
               startContent={<LayoutDashboard size={38} />}
               onPress={() => push("/")}
-              //   onPressEnd={onClose}
             >
               {/* Feed */}
             </Button>
@@ -34,7 +40,6 @@ const MobileFooter = () => {
               variant="light"
               startContent={<ImagePlus size={38} />}
               onPress={() => push("/create-post")}
-              //   onPressEnd={onClose}
             >
               {/* Post */}
             </Button>
@@ -43,9 +48,9 @@ const MobileFooter = () => {
               isIconOnly
               variant="light"
               onPress={() => push("/profile")}
-              //   onPressEnd={onClose}
             >
-              <AvatarMenu withName={false} />
+              {/* AvatarMenu */}
+              {children}
             </Button>
 
             <LogoutButton />
