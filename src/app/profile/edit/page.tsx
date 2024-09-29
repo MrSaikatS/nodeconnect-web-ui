@@ -19,7 +19,7 @@ const page = async () => {
   return (
     <>
       <div className="py-4">
-        <UpdateAvatar />
+        <UpdateAvatar profile={userData} />
       </div>
 
       <Divider className="mx-auto w-[310px] sm:w-[390px]" />
