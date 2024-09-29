@@ -15,8 +15,17 @@ export function middleware(request: NextRequest) {
   }
 
   try {
-    decodeJwt(cookieToken);
-    return NextResponse.next();
+    const { iss } = decodeJwt(cookieToken);
+
+    if (iss !== "directus") {
+      const customResponse = NextResponse.redirect(
+        new URL("/auth/login", request.nextUrl),
+      );
+
+      customResponse.cookies.delete("directus_session_token");
+
+      return customResponse;
+    }
   } catch (error) {
     const customResponse = NextResponse.redirect(
       new URL("/auth/login", request.nextUrl),
