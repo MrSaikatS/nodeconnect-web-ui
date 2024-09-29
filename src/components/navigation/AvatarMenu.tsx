@@ -1,3 +1,4 @@
+import env from "@/utils/env/server";
 import getAuthenticatedUser from "@/utils/queries/getAuthenticatedUser";
 import Image from "next/image";
 
@@ -17,7 +18,7 @@ const AvatarMenu = async ({ withName }: AvatarMenuProps) => {
   const avatarUrl =
     avatar === null
       ? `https://avatar.iran.liara.run/public/${gender === "male" ? "boy" : "girl"}?username=${first_name}+${last_name}`
-      : avatar;
+      : `${env.API_URL}/assets/${avatar}`;
 
   return (
     <div className="flex items-center gap-2">

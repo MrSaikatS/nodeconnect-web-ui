@@ -1,3 +1,4 @@
+import env from "@/utils/env/server";
 import { UserType } from "@/utils/types";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody } from "@nextui-org/card";
@@ -13,7 +14,7 @@ const ProfileInfo = ({ selfProfile, user }: ProfileInfoProps) => {
   const avatarUrl =
     user.avatar === null
       ? `https://avatar.iran.liara.run/public/${user.gender === "male" ? "boy" : "girl"}?username=${user.first_name}+${user.last_name}`
-      : user.avatar;
+      : `${env.API_URL}/assets/${user.avatar}`;
 
   return (
     <>

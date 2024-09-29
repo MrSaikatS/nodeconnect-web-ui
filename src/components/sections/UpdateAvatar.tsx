@@ -1,5 +1,6 @@
 "use client";
 
+import env from "@/utils/env/client";
 import uploadAvatar from "@/utils/queries/uploadAvatar";
 import { UserType } from "@/utils/types";
 import { Button } from "@nextui-org/button";
@@ -23,7 +24,7 @@ const UpdateAvatar = ({ profile }: UpdateAvatarProps) => {
   const avatarUrl =
     profile.avatar === null
       ? `https://avatar.iran.liara.run/public/${profile.gender === "male" ? "boy" : "girl"}?username=${profile.first_name}+${profile.last_name}`
-      : profile.avatar;
+      : `${env.NEXT_PUBLIC_API_URL}/assets/${profile.avatar}`;
 
   const { openFilePicker, clear, filesContent, plainFiles } = useFilePicker({
     multiple: false,
