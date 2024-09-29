@@ -20,3 +20,14 @@ export type PublicUserType = {
   last_name: string;
   email: string;
 };
+
+export type UserType = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  title: null | string;
+  description: null | string;
+  avatar: null | string;
+  gender: string;
+};

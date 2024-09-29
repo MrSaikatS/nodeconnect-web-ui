@@ -1,7 +1,5 @@
 "use client";
 
-import Header from "@/components/navigation/Header";
-import MobileFooter from "@/components/navigation/MobileFooter";
 import { darkModeAtom } from "@/utils/helpers";
 import { NextUIProvider } from "@nextui-org/system";
 import { useAtom } from "jotai";
@@ -26,19 +24,11 @@ const Providers = ({ children }: ProvidersProps) => {
   return (
     <>
       <NextUIProvider>
-        <Header />
-
-        <main className="container mx-auto max-w-screen-lg px-6">
-          {children}
-        </main>
-
-        <MobileFooter />
+        {children}
 
         <ToastContainer
           position="top-center"
           autoClose={1500}
-          // stacked={true}
-          // closeOnClick={true}
           draggable={true}
           theme={isDark ? "dark" : "light"}
         />

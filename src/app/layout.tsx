@@ -1,3 +1,6 @@
+import AvatarMenu from "@/components/navigation/AvatarMenu";
+import Header from "@/components/navigation/Header";
+import MobileFooter from "@/components/navigation/MobileFooter";
 import { Provider as JotaiProvider } from "jotai";
 import { ReactNode } from "react";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -16,7 +19,19 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     >
       <body className={``}>
         <JotaiProvider>
-          <Providers>{children}</Providers>
+          <Providers>
+            <Header>
+              <AvatarMenu withName={true} />
+            </Header>
+
+            <main className="container mx-auto max-w-screen-lg px-6">
+              {children}
+            </main>
+
+            <MobileFooter>
+              <AvatarMenu withName={false} />
+            </MobileFooter>
+          </Providers>
         </JotaiProvider>
       </body>
     </html>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@nextui-org/button";
 import {
   Navbar,
@@ -8,11 +10,15 @@ import {
 import { ImagePlus, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { ReactNode } from "react";
 import DarkmodeButton from "../buttons/DarkmodeButton";
 import LogoutButton from "../buttons/LogoutButton";
-import AvatarMenu from "./AvatarMenu";
 
-const Header = () => {
+type HeaderProps = Readonly<{
+  children: ReactNode;
+}>;
+
+const Header = ({ children }: HeaderProps) => {
   const pathname = usePathname();
 
   const { push } = useRouter();
@@ -67,12 +73,20 @@ const Header = () => {
           </NavbarItem>
 
           <NavbarItem>
-            <Button
+            {/* <Button
+              fullWidth
               variant="light"
               onPress={() => push("/profile")}
+              // className="pr-12"
+            ></Button> */}
+
+            <button
+              onClick={() => push("/profile")}
+              className="w-full"
             >
-              <AvatarMenu withName={true} />
-            </Button>
+              {/* AvatarMenu */}
+              {children}
+            </button>
           </NavbarItem>
 
           <NavbarItem>

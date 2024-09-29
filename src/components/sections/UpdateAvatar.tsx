@@ -1,14 +1,30 @@
 "use client";
 
+import env from "@/utils/env/client";
+import uploadAvatar from "@/utils/queries/uploadAvatar";
+import { UserType } from "@/utils/types";
 import { Button } from "@nextui-org/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { FilePenLine } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { useFilePicker } from "use-file-picker";
 
-const UpdateAvatar = () => {
+type UpdateAvatarProps = {
+  profile: UserType;
+};
+
+const UpdateAvatar = ({ profile }: UpdateAvatarProps) => {
   const [isFileSelected, setIsFileSelected] = useState(false);
+
+  const { push } = useRouter();
+
+  const avatarUrl =
+    profile.avatar === null
+      ? `https://avatar.iran.liara.run/public/${profile.gender === "male" ? "boy" : "girl"}?username=${profile.first_name}+${profile.last_name}`
+      : `${env.NEXT_PUBLIC_API_URL}/assets/${profile.avatar}`;
 
   const { openFilePicker, clear, filesContent, plainFiles } = useFilePicker({
     multiple: false,
@@ -19,16 +35,27 @@ const UpdateAvatar = () => {
   });
 
   const uploadAvatarFunc = async () => {
-    console.log(plainFiles[0]);
+    const { success, message } = await uploadAvatar(
+      profile.avatar,
+      plainFiles[0],
+    );
 
-    clear();
+    if (!success) {
+      toast.error(message);
+    }
+
+    if (success) {
+      clear();
+      toast.success(message);
+      push("/profile");
+    }
   };
 
   return (
     <>
       <Card
         as={"section"}
-        className="mx-auto w-[310px] sm:w-[390px]"
+        className="mx-auto min-w-[86dvw] max-w-screen-sm"
       >
         <CardHeader className="flex justify-center text-2xl">
           Change Avatar
@@ -38,11 +65,11 @@ const UpdateAvatar = () => {
           {!isFileSelected && (
             <div className="relative">
               <Image
-                src={`https://avatar.iran.liara.run/public/boy?username=Saikat+Sardar`}
-                alt="Profile Image"
+                src={avatarUrl}
+                alt={profile.first_name}
                 width={300}
                 height={300}
-                className="h-[300px] w-[300px] rounded-full"
+                className="aspect-square h-[300px] w-[300px] rounded-full"
               />
 
               <button
@@ -61,7 +88,7 @@ const UpdateAvatar = () => {
               alt={file.name}
               width={300}
               height={300}
-              className="h-[300px] w-[300px] rounded-full"
+              className="aspect-square h-[300px] w-[300px] rounded-full"
             />
           ))}
         </CardBody>

@@ -6,6 +6,7 @@ const authRegister = async (rData: RegisterFormType) => {
   try {
     const { data } = await api
       .get("users", {
+        next: { tags: ["userEmailCheck"] },
         searchParams: {
           filter: JSON.stringify({
             email: {
@@ -19,6 +20,7 @@ const authRegister = async (rData: RegisterFormType) => {
     if (data.length === 0) {
       await api
         .post("users", {
+          next: { tags: ["authRegister"] },
           json: {
             first_name: rData.first_name,
             last_name: rData.last_name,

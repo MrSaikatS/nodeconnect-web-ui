@@ -1,22 +1,17 @@
 import { HTTPError } from "ky";
+import { ProfileEditFormType } from "../types";
 import api from "../ky/client";
-import { LoginFormType } from "../types";
 
-const authLogin = async (lData: LoginFormType) => {
+const updateProfile = async (pData: ProfileEditFormType) => {
   try {
-    //
-    await api.post("auth/login", {
-      next: { tags: ["authLogin"] },
-      json: {
-        email: lData.email,
-        password: lData.password,
-        mode: "session",
-      },
+    await api.patch("users/me", {
+      next: { tags: ["updateUserProfile"] },
+      json: pData,
     });
 
     return {
       success: true,
-      message: "User Login Successful",
+      message: "Profile Updated Successfully",
     };
   } catch (error: any) {
     if (error.name === "HTTPError") {
@@ -35,4 +30,4 @@ const authLogin = async (lData: LoginFormType) => {
   }
 };
 
-export default authLogin;
+export default updateProfile;
