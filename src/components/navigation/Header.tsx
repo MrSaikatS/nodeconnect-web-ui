@@ -73,13 +73,20 @@ const Header = ({ children }: HeaderProps) => {
           </NavbarItem>
 
           <NavbarItem>
-            <Button
+            {/* <Button
+              fullWidth
               variant="light"
               onPress={() => push("/profile")}
+              // className="pr-12"
+            ></Button> */}
+
+            <button
+              onClick={() => push("/profile")}
+              className="w-full"
             >
               {/* AvatarMenu */}
               {children}
-            </Button>
+            </button>
           </NavbarItem>
 
           <NavbarItem>
