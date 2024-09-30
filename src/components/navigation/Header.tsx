@@ -84,7 +84,6 @@ const Header = ({ children }: HeaderProps) => {
               onClick={() => push("/profile")}
               className="w-full"
             >
-              {/* AvatarMenu */}
               {children}
             </button>
           </NavbarItem>

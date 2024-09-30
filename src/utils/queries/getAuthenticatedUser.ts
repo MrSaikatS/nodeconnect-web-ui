@@ -9,7 +9,7 @@ const getAuthenticatedUser = async () => {
 
     const { data } = await api
       .get("users/me", {
-        cache: "no-store",
+        cache: "force-cache",
         next: { tags: ["getAuthenticatedUser"] },
         headers: {
           Authorization: `Bearer ${sessionToken}`,

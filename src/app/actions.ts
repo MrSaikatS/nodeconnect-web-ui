@@ -1,3 +1,13 @@
 "use server";
 
-export const authUser = async () => {};
+import { revalidateTag } from "next/cache";
+
+export const revalidateAuthUser = async () => {
+  try {
+    // ...
+  } catch (error) {
+    // ...
+  }
+
+  revalidateTag("getAuthenticatedUser");
+};

@@ -13,7 +13,7 @@ const page = () => {
   return (
     <>
       <div className="grid h-dvh place-items-center">
-        <Card className="mx-auto min-w-[86dvw] max-w-screen-sm">
+        <Card className="mx-auto w-[86dvw] max-w-screen-sm">
           <CardHeader className="flex justify-center text-3xl font-bold tracking-wide">
             <Link href="/">NodeConnect</Link>
           </CardHeader>

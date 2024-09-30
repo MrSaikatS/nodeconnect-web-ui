@@ -6,6 +6,7 @@ const authRegister = async (rData: RegisterFormType) => {
   try {
     const { data } = await api
       .get("users", {
+        cache: "no-store",
         next: { tags: ["userEmailCheck"] },
         searchParams: {
           filter: JSON.stringify({

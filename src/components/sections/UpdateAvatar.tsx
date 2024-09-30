@@ -1,5 +1,6 @@
 "use client";
 
+import { revalidateAuthUser } from "@/app/actions";
 import env from "@/utils/env/client";
 import uploadAvatar from "@/utils/queries/uploadAvatar";
 import { UserType } from "@/utils/types";
@@ -47,6 +48,7 @@ const UpdateAvatar = ({ profile }: UpdateAvatarProps) => {
     if (success) {
       clear();
       toast.success(message);
+      await revalidateAuthUser();
       push("/profile");
     }
   };
@@ -55,7 +57,7 @@ const UpdateAvatar = ({ profile }: UpdateAvatarProps) => {
     <>
       <Card
         as={"section"}
-        className="mx-auto min-w-[86dvw] max-w-screen-sm"
+        className="mx-auto w-[86dvw] max-w-screen-sm"
       >
         <CardHeader className="flex justify-center text-2xl">
           Change Avatar

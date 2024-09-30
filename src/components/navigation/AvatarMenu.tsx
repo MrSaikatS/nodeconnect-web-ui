@@ -29,7 +29,7 @@ const AvatarMenu = async ({ withName }: AvatarMenuProps) => {
         height={38}
         className="h-[38px] w-[38px] rounded-full"
       />
-      {withName && <span className="pr-[2rem] text-lg">{first_name}</span>}
+      {withName && <span className="text-lg">{first_name}</span>}
     </div>
   );
 };
