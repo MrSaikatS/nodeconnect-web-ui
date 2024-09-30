@@ -26,6 +26,7 @@ const ProfilePostCardContainer = async ({
           <PostCard
             key={item.id}
             selfPost={true}
+            clickableProfile={false}
             postData={item}
           />
         ))}

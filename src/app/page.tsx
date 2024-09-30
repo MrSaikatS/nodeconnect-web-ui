@@ -26,6 +26,7 @@ const page = async () => {
           <PostCard
             key={item.id}
             selfPost={false}
+            clickableProfile={true}
             postData={item}
           />
         ))}

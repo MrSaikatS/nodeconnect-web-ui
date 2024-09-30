@@ -5,13 +5,15 @@ import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
 import { Divider } from "@nextui-org/divider";
 import { Trash } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 type PostCardProps = {
   selfPost: boolean;
   postData: PostType;
+  clickableProfile: boolean;
 };
 
-const PostCard = ({ selfPost, postData }: PostCardProps) => {
+const PostCard = ({ selfPost, postData, clickableProfile }: PostCardProps) => {
   const avatarUrl =
     postData.user_created.avatar === null
       ? `https://avatar.iran.liara.run/public/${postData.user_created.gender === "male" ? "boy" : "girl"}?username=${postData.user_created.first_name}+${postData.user_created.last_name}`
@@ -23,20 +25,42 @@ const PostCard = ({ selfPost, postData }: PostCardProps) => {
     <>
       <Card as={"section"}>
         <CardHeader className="flex justify-between">
-          <div className="flex items-center gap-2 text-lg">
-            <Image
-              src={avatarUrl}
-              alt={postData.user_created.first_name}
-              width={45}
-              height={45}
-              className="rounded-full"
-            />
+          {clickableProfile && (
+            <Link
+              href={`/profile/${postData.user_created.id}`}
+              className="flex items-center gap-2 text-lg"
+            >
+              <Image
+                src={avatarUrl}
+                alt={postData.user_created.first_name}
+                width={45}
+                height={45}
+                className="rounded-full"
+              />
 
-            <div className="">
-              {postData.user_created.first_name}{" "}
-              {postData.user_created.last_name}
+              <div className="">
+                {postData.user_created.first_name}{" "}
+                {postData.user_created.last_name}
+              </div>
+            </Link>
+          )}
+
+          {!clickableProfile && (
+            <div className="flex items-center gap-2 text-lg">
+              <Image
+                src={avatarUrl}
+                alt={postData.user_created.first_name}
+                width={45}
+                height={45}
+                className="rounded-full"
+              />
+
+              <div className="">
+                {postData.user_created.first_name}{" "}
+                {postData.user_created.last_name}
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="">
             {selfPost && (

@@ -17,7 +17,7 @@ const page = ({ params: { userId } }: DynamicPageProps) => {
 
   return (
     <>
-      <ProfileInfo selfProfile={false} />
+      {/* <ProfileInfo selfProfile={false} /> */}
 
       <div className="grid gap-4 py-4"></div>
     </>
