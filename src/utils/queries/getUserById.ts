@@ -2,16 +2,17 @@ import { HTTPError } from "ky";
 import { cookies } from "next/headers";
 import api from "../ky/server";
 import { DefautResponseType, UserType } from "../types";
+import { notFound } from "next/navigation";
 
-const getAuthenticatedUser = async () => {
+const getUserById = async (userId: string) => {
   try {
     const sessionToken = cookies().get("directus_session_token")
       ?.value as string;
 
     const { data } = await api
-      .get("users/me", {
+      .get(`users/${userId}`, {
         cache: "no-store",
-        next: { tags: ["getAuthenticatedUser"] },
+        next: { tags: ["getUserById"] },
         headers: {
           Authorization: `Bearer ${sessionToken}`,
         },
@@ -24,10 +25,7 @@ const getAuthenticatedUser = async () => {
     return data;
   } catch (error: any) {
     if (error.name === "HTTPError") {
-      const httpError = error as HTTPError;
-      const errorJson = await httpError.response.json<any>();
-      console.log(errorJson.errors[0].message);
-      return undefined;
+      notFound();
     } else {
       console.log("Network Error");
       return undefined;
@@ -35,4 +33,4 @@ const getAuthenticatedUser = async () => {
   }
 };
 
-export default getAuthenticatedUser;
+export default getUserById;

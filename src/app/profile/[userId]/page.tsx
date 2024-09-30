@@ -1,10 +1,7 @@
 import ProfileInfo from "@/components/sections/ProfileInfo";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Public Profile | NodeSocial",
-  description: "NodeSocial Profile Page",
-};
+import ProfilePostCardContainer from "@/components/sections/ProfilePostCardContainer";
+import getUserById from "@/utils/queries/getUserById";
+import { Divider } from "@nextui-org/divider";
 
 type DynamicPageProps = {
   params: {
@@ -12,14 +9,43 @@ type DynamicPageProps = {
   };
 };
 
-const page = ({ params: { userId } }: DynamicPageProps) => {
-  console.log(userId);
+export async function generateMetadata({ params }: DynamicPageProps) {
+  const userData = await getUserById(params.userId);
+
+  if (userData === undefined) {
+    return {
+      title: "Public Profile | NodeSocial",
+      description: "NodeSocial Public Profile Page",
+    };
+  } else {
+    return {
+      title: `${userData.first_name}'s Profile | NodeSocial`,
+      description: `Profile Page of ${userData.first_name}`,
+    };
+  }
+}
+
+const page = async ({ params: { userId } }: DynamicPageProps) => {
+  const userData = await getUserById(userId);
+
+  if (userData === undefined) {
+    return <></>;
+  }
 
   return (
     <>
-      {/* <ProfileInfo selfProfile={false} /> */}
+      <ProfileInfo
+        key={userData.id}
+        selfProfile={false}
+        user={userData}
+      />
 
-      <div className="grid gap-4 py-4"></div>
+      <Divider className="mx-auto w-[86dvw] max-w-screen-sm" />
+
+      <ProfilePostCardContainer
+        key={userData.id}
+        userId={userData.id}
+      />
     </>
   );
 };

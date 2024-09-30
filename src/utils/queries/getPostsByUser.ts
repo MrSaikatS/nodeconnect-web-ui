@@ -1,6 +1,6 @@
 import { HTTPError } from "ky";
-import api from "../ky/server";
 import { cookies } from "next/headers";
+import api from "../ky/server";
 import { DefautResponseType, PostType } from "../types";
 
 const getPostsByUser = async (userId: string) => {

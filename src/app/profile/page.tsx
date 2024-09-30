@@ -2,12 +2,22 @@ import ProfileInfo from "@/components/sections/ProfileInfo";
 import ProfilePostCardContainer from "@/components/sections/ProfilePostCardContainer";
 import getAuthenticatedUser from "@/utils/queries/getAuthenticatedUser";
 import { Divider } from "@nextui-org/divider";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Profile | NodeSocial",
-  description: "NodeSocial Profile Page",
-};
+export async function generateMetadata() {
+  const userData = await getAuthenticatedUser();
+
+  if (userData === undefined) {
+    return {
+      title: "Private Profile | NodeSocial",
+      description: "NodeSocial Private Profile Page",
+    };
+  } else {
+    return {
+      title: `${userData.first_name}'s Profile | NodeSocial`,
+      description: `Profile Page of ${userData.first_name}`,
+    };
+  }
+}
 
 const page = async () => {
   const userData = await getAuthenticatedUser();
