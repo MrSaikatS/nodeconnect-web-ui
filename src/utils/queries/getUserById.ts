@@ -1,8 +1,7 @@
-import { HTTPError } from "ky";
 import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 import api from "../ky/server";
 import { DefautResponseType, UserType } from "../types";
-import { notFound } from "next/navigation";
 
 const getUserById = async (userId: string) => {
   try {

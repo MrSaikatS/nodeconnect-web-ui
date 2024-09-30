@@ -34,7 +34,6 @@ export type UserType = {
 
 export type PostType = {
   id: string;
-  sort: null;
   date_created: string;
   caption: null | string;
   postImg: string;
