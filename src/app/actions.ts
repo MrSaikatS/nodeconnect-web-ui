@@ -3,11 +3,9 @@
 import { revalidateTag } from "next/cache";
 
 export const revalidateAuthUser = async () => {
-  try {
-    // ...
-  } catch (error) {
-    // ...
-  }
-
   revalidateTag("getAuthenticatedUser");
+};
+
+export const revalidateGetPostsByUser = async () => {
+  revalidateTag("getPostsByUser");
 };

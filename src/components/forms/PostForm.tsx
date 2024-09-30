@@ -1,5 +1,7 @@
 "use client";
 
+import { revalidateGetPostsByUser } from "@/app/actions";
+import createNewPost from "@/utils/queries/createNewPost";
 import { PostFormType } from "@/utils/types";
 import { postFormSchema } from "@/utils/zodSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,10 +10,14 @@ import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
 import { ImagePlus } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { useFilePicker } from "use-file-picker";
 
 const PostForm = () => {
+  const { push } = useRouter();
+
   const { openFilePicker, clear, filesContent, plainFiles } = useFilePicker({
     multiple: false,
     accept: "image/*",
@@ -34,21 +40,17 @@ const PostForm = () => {
   };
 
   const createPostFunc = async ({ caption }: PostFormType) => {
-    if (plainFiles.length === 0) {
-      console.log("An image is required");
-    } else {
-      const formData = new FormData();
+    const { success, message } = await createNewPost(caption, plainFiles[0]);
 
-      formData.append("file", plainFiles[0]);
+    if (!success) {
+      toast.error(message);
+    }
 
-      let fakeFileId = "61f61686-88dc-4fd7-9670-c816387a609a";
-
-      if (caption === "") {
-        console.log(fakeFileId);
-      } else {
-        console.log(`${caption} : ${typeof caption}`);
-        console.log(fakeFileId);
-      }
+    if (success) {
+      clearPost();
+      toast.success(message);
+      await revalidateGetPostsByUser();
+      push("/profile");
     }
   };
 

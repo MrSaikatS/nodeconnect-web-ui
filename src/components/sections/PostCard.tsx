@@ -55,7 +55,7 @@ const PostCard = ({ selfPost, postData }: PostCardProps) => {
 
         <CardBody>
           {postData.caption === null ? null : (
-            <div className="mb-4">Lorem ipsum dolor sit amet.</div>
+            <div className="mb-4">{postData.caption}</div>
           )}
 
           <Image

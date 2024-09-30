@@ -19,9 +19,7 @@ const uploadAvatar = async (prevAvatarId: null | string, avatarFile: File) => {
 
     formData.append("file", avatarFile);
 
-    const {
-      data: { id },
-    } = await api
+    const { data } = await api
       .post("files", {
         next: { tags: ["uploadAvatar"] },
         body: formData,
@@ -31,7 +29,7 @@ const uploadAvatar = async (prevAvatarId: null | string, avatarFile: File) => {
     await api.patch("users/me", {
       next: { tags: ["updateUserProfile"] },
       json: {
-        avatar: id,
+        avatar: data.id,
       },
     });
 
