@@ -1,5 +1,7 @@
 import ProfileInfo from "@/components/sections/ProfileInfo";
+import ProfilePostCardContainer from "@/components/sections/ProfilePostCardContainer";
 import getAuthenticatedUser from "@/utils/queries/getAuthenticatedUser";
+import { Divider } from "@nextui-org/divider";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -22,7 +24,12 @@ const page = async () => {
         user={userData}
       />
 
-      <div className="grid gap-4 py-4"></div>
+      <Divider className="mx-auto w-[86dvw] max-w-screen-sm" />
+
+      <ProfilePostCardContainer
+        key={userData.id}
+        userId={userData.id}
+      />
     </>
   );
 };

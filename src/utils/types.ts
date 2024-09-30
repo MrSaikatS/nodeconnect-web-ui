@@ -31,3 +31,18 @@ export type UserType = {
   avatar: null | string;
   gender: string;
 };
+
+export type PostType = {
+  id: string;
+  sort: null;
+  date_created: string;
+  caption: null | string;
+  postImg: string;
+  user_created: {
+    id: string;
+    first_name: string;
+    last_name: string;
+    avatar: null | string;
+    gender: string;
+  };
+};
