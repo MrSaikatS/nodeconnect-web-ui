@@ -14,16 +14,19 @@ import { ReactNode } from "react";
 import DarkmodeButton from "../buttons/DarkmodeButton";
 import LogoutButton from "../buttons/LogoutButton";
 
-type HeaderProps = Readonly<{
-  children: ReactNode;
-}>;
-
-const Header = ({ children }: HeaderProps) => {
+const Header = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
 
   const { push } = useRouter();
 
-  if (pathname !== "/auth/login" && pathname !== "/auth/register") {
+  if (
+    pathname === "/" ||
+    pathname.startsWith("/profile") ||
+    pathname.startsWith("/create-post")
+  ) {
+    // console.log(`----------------------------------`);
+    // console.log(`Log from Header Components`);
+    // console.log(`----------------------------------`);
     return (
       <>
         <Navbar
@@ -90,8 +93,6 @@ const Header = ({ children }: HeaderProps) => {
       </>
     );
   }
-
-  return <></>;
 };
 
 export default Header;
