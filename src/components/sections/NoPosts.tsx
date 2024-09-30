@@ -5,7 +5,7 @@ const NoPosts = () => {
     <>
       <Card
         as={"section"}
-        className="mb-20 py-4 sm:mb-4"
+        className="mb-20 mt-4 py-4 sm:mb-4"
       >
         <CardBody className="flex items-center">
           <div className="text-3xl">No Posts Yet 🙁</div>

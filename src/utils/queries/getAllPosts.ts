@@ -1,9 +1,9 @@
 import { HTTPError } from "ky";
+import { DefautResponseType, PostType } from "../types";
 import api from "../ky/server";
 import { cookies } from "next/headers";
-import { DefautResponseType, PostType } from "../types";
 
-const getPostsByUser = async (userId: string) => {
+const getAllPosts = async () => {
   try {
     const sessionToken = cookies().get("directus_session_token")
       ?.value as string;
@@ -18,11 +18,6 @@ const getPostsByUser = async (userId: string) => {
         searchParams: {
           sort: "-date_created",
           fields: `*,user_created.id,user_created.first_name,user_created.last_name,user_created.avatar,user_created.gender`,
-          filter: JSON.stringify({
-            user_created: {
-              _eq: userId,
-            },
-          }),
         },
       })
       .json<DefautResponseType<PostType[]>>();
@@ -41,4 +36,4 @@ const getPostsByUser = async (userId: string) => {
   }
 };
 
-export default getPostsByUser;
+export default getAllPosts;
