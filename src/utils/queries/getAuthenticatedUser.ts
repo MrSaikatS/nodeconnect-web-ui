@@ -26,6 +26,11 @@ const getAuthenticatedUser = async () => {
     if (error.name === "HTTPError") {
       const httpError = error as HTTPError;
       const errorJson = await httpError.response.json<any>();
+
+      console.log(`----------------------------------`);
+      console.log(`Log from getAuthenticatedUser Func`);
+      console.log(`----------------------------------`);
+
       console.log(errorJson.errors[0].message);
       return undefined;
     } else {

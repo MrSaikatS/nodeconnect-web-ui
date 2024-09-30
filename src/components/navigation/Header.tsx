@@ -23,82 +23,75 @@ const Header = ({ children }: HeaderProps) => {
 
   const { push } = useRouter();
 
-  if (pathname === "/auth/login" || pathname === "/auth/register") {
-    return <></>;
+  if (pathname !== "/auth/login" && pathname !== "/auth/register") {
+    return (
+      <>
+        <Navbar
+          isBordered
+          isBlurred
+        >
+          <NavbarBrand className="text-2xl font-bold tracking-wide">
+            <Link href="/">NodeConnect</Link>
+          </NavbarBrand>
+
+          <NavbarContent
+            justify="end"
+            className="flex sm:hidden"
+          >
+            <NavbarItem>
+              <DarkmodeButton />
+            </NavbarItem>
+          </NavbarContent>
+
+          <NavbarContent
+            justify="end"
+            className="hidden sm:flex"
+          >
+            <NavbarItem>
+              <Button
+                variant="light"
+                startContent={<LayoutDashboard size={38} />}
+                onPress={() => push("/")}
+                className="text-lg"
+              >
+                Feed
+              </Button>
+            </NavbarItem>
+
+            <NavbarItem>
+              <Button
+                variant="light"
+                startContent={<ImagePlus size={38} />}
+                onPress={() => push("/create-post")}
+                className="text-lg"
+              >
+                Post
+              </Button>
+            </NavbarItem>
+
+            <NavbarItem>
+              <button
+                onClick={() => push("/profile")}
+                className="w-full"
+              >
+                {children}
+              </button>
+            </NavbarItem>
+
+            <NavbarItem>
+              <LogoutButton />
+            </NavbarItem>
+
+            <NavbarItem>
+              <DarkmodeButton />
+            </NavbarItem>
+          </NavbarContent>
+        </Navbar>
+      </>
+    );
   }
 
-  return (
-    <>
-      <Navbar
-        isBordered
-        isBlurred
-      >
-        <NavbarBrand className="text-2xl font-bold tracking-wide">
-          <Link href="/">NodeConnect</Link>
-        </NavbarBrand>
-
-        <NavbarContent
-          justify="end"
-          className="flex sm:hidden"
-        >
-          <NavbarItem>
-            <DarkmodeButton />
-          </NavbarItem>
-        </NavbarContent>
-
-        <NavbarContent
-          justify="end"
-          className="hidden sm:flex"
-        >
-          <NavbarItem>
-            <Button
-              variant="light"
-              startContent={<LayoutDashboard size={38} />}
-              onPress={() => push("/")}
-              className="text-lg"
-            >
-              Feed
-            </Button>
-          </NavbarItem>
-
-          <NavbarItem>
-            <Button
-              variant="light"
-              startContent={<ImagePlus size={38} />}
-              onPress={() => push("/create-post")}
-              className="text-lg"
-            >
-              Post
-            </Button>
-          </NavbarItem>
-
-          <NavbarItem>
-            {/* <Button
-              fullWidth
-              variant="light"
-              onPress={() => push("/profile")}
-              // className="pr-12"
-            ></Button> */}
-
-            <button
-              onClick={() => push("/profile")}
-              className="w-full"
-            >
-              {children}
-            </button>
-          </NavbarItem>
-
-          <NavbarItem>
-            <LogoutButton />
-          </NavbarItem>
-
-          <NavbarItem>
-            <DarkmodeButton />
-          </NavbarItem>
-        </NavbarContent>
-      </Navbar>
-    </>
-  );
+  return <></>;
 };
 
 export default Header;
