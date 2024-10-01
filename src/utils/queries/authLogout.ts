@@ -13,7 +13,7 @@ const authLogout = async () => {
 
     return {
       success: true,
-      message: "User Login Successful",
+      message: "User Logged Out Successfully",
     };
   } catch (error: any) {
     if (error.name === "HTTPError") {

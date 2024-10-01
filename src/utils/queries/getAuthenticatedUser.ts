@@ -31,7 +31,7 @@ const getAuthenticatedUser = async () => {
       // console.log(`Log from getAuthenticatedUser Func`);
       // console.log(`----------------------------------`);
 
-      console.log(errorJson.errors[0].message);
+      // console.log(errorJson.errors[0].message);
       return undefined;
     } else {
       console.log("Network Error");

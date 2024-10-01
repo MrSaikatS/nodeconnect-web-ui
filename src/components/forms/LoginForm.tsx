@@ -36,7 +36,7 @@ const LoginForm = () => {
 
     if (success) {
       toast.success(message);
-      push("/");
+      push("/profile");
     }
   };
 

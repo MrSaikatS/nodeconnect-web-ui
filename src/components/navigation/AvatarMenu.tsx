@@ -27,7 +27,7 @@ const AvatarMenu = async ({ withName }: AvatarMenuProps) => {
         alt="Profile Image"
         width={38}
         height={38}
-        className="h-[38px] w-[38px] rounded-full"
+        className="h-[38px] w-[38px] rounded-full object-cover"
       />
       {withName && <span className="text-lg">{first_name}</span>}
     </div>

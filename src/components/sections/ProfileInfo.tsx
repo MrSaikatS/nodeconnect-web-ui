@@ -31,7 +31,7 @@ const ProfileInfo = ({ selfProfile, user }: ProfileInfoProps) => {
                   alt={user.first_name}
                   width={300}
                   height={300}
-                  className="h-[300px] w-[300px] rounded-full"
+                  className="h-[300px] w-[300px] rounded-full object-cover"
                 />
               </div>
             </div>

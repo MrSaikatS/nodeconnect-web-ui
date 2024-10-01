@@ -2,6 +2,7 @@ import ProfileInfo from "@/components/sections/ProfileInfo";
 import ProfilePostCardContainer from "@/components/sections/ProfilePostCardContainer";
 import getAuthenticatedUser from "@/utils/queries/getAuthenticatedUser";
 import { Divider } from "@nextui-org/divider";
+import { revalidateTag } from "next/cache";
 
 export async function generateMetadata() {
   const userData = await getAuthenticatedUser();
@@ -25,6 +26,8 @@ const page = async () => {
   if (userData === undefined) {
     return <></>;
   }
+
+  revalidateTag("getAuthenticatedUser");
 
   return (
     <>
