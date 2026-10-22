@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@hookform/resolvers": "3.9.0",
+    "@hookform/resolvers": "3.10.0",
     "@nextui-org/button": "2.0.38",
     "@nextui-org/card": "2.0.34",
     "@nextui-org/divider": "2.0.32",
